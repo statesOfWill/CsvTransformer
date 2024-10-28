@@ -1,0 +1,4 @@
+package keyword
+
+class KeywordsCollection {
+}
