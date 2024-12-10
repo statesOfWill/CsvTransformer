@@ -1,7 +1,6 @@
 package com.csv.transform.models.data;
 
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 

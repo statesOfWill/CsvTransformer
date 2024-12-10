@@ -1,5 +1,6 @@
 package com.csv.transform;
 
+import com.csv.transform.models.data.ExcelIndexTable;
 import com.csv.transform.models.data.Request;
 import com.csv.transform.models.data.Response;
 import com.csv.transform.transformationStrategies.highLevel.*;
@@ -38,11 +39,11 @@ public class CsvTransformationController {
     @PostMapping("/init")
     Response initializeCsv(@RequestBody Request<String> request) {
         var source  = stringRequestToCsvTable.transform( request );
-        var transformed = amountRangeTransformation.transform( source );
-        var toListOfCells = csvTableToListOfCells.transform(transformed.getLeft());
-        var savedToDb = saveCellsAsDb.transform(Pair.of(toListOfCells, transformed.getRight()));
-        transformed.getLeft().setTransformationSuccessful(savedToDb);
-        return csvTableToResponse.transform( transformed.getLeft() );
+        var excelIndexTable = new ExcelIndexTable(source.getNumRows(), source.getNumColumns());
+        var toListOfCells = csvTableToListOfCells.transform(source);
+        var savedToDb = saveCellsAsDb.transform(Pair.of(toListOfCells, excelIndexTable));
+        source.setTransformationSuccessful(savedToDb);
+        return csvTableToResponse.transform( source );
     }
 
     @PostMapping("/map")

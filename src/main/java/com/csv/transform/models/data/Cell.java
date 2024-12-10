@@ -1,5 +1,6 @@
 package com.csv.transform.models.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

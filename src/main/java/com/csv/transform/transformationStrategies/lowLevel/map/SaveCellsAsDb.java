@@ -20,17 +20,26 @@ public class SaveCellsAsDb implements TransformationStrategy<Pair<ArrayList<Arra
     private ObjectMapperWrapper mapper;
     @Override
     public Boolean transform(Pair<ArrayList<ArrayList<Cell<String>>>, ExcelIndexTable> input) {
-        var isSuccess = false;
         var cellList = input.getLeft();
         var indexTable = input.getRight();
         for(int i = 0; i < cellList.size();i++){
             var row = cellList.get(i);
             for(int j = 0; j < row.size(); j++){
-                Cell<String> strCell = mapper.objToStringCell(row.get(j));
-                DbCell dbCell = new DbCell(strCell.getData(), indexTable.get(i, j));
-                cellRepository.save(dbCell);
+                try {
+                    Cell<String> strCell = mapper.objToStringCell(row.get(j));
+                    var data = strCell.getData();
+                    var excelIndex = indexTable.get(i, j);
+                    System.out.print("saved data: ");
+                    System.out.println(data);
+                    System.out.print("with excel index: ");
+                    System.out.println(excelIndex);
+                    DbCell dbCell = new DbCell(data, excelIndex);
+                    cellRepository.save(dbCell);
+                }catch(Exception e){
+                    return false;
+                }
             }
         }
-        return isSuccess;
+        return true;
     }
 }
