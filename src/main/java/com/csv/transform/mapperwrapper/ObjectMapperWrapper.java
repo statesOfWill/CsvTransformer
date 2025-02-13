@@ -1,8 +1,8 @@
 package com.csv.transform.mapperwrapper;
 
-import com.csv.transform.models.data.Cell;
-import com.csv.transform.models.data.CsvTable;
-import com.csv.transform.models.data.Range;
+import com.csv.transform.models.csv.Cell;
+import com.csv.transform.models.csv.CsvTable;
+import com.csv.transform.models.csv.Range;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;

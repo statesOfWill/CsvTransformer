@@ -1,7 +1,7 @@
-package com.csv.transform.models.data.iterators;
+package com.csv.transform.iterators;
 
 
-import com.csv.transform.models.data.CsvTable;
+import com.csv.transform.models.csv.CsvTable;
 
 import java.util.Iterator;
 import java.util.List;

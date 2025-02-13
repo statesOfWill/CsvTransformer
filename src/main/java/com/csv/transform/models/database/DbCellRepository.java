@@ -1,4 +1,4 @@
-package com.csv.transform.mysqlDataAccess;
+package com.csv.transform.models.database;
 
 import org.springframework.data.repository.CrudRepository;
 

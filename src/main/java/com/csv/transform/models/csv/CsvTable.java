@@ -1,6 +1,6 @@
-package com.csv.transform.models.data;
+package com.csv.transform.models.csv;
 
-import com.csv.transform.models.data.iterators.CsvRowIterator;
+import com.csv.transform.iterators.CsvRowIterator;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -93,6 +93,7 @@ public class CsvTable implements Collection<Row> {
     @Override
     public boolean add(Row row) {
         this.rows.add(row);
+        this.numRows++;
         return true;
     }
 

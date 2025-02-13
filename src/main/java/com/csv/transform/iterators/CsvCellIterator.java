@@ -1,4 +1,4 @@
-package com.csv.transform.models.data.iterators;
+package com.csv.transform.iterators;
 
 import java.util.Iterator;
 import java.util.List;

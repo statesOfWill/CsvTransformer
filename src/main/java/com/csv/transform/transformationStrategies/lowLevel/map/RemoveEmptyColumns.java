@@ -1,7 +1,7 @@
 package com.csv.transform.transformationStrategies.lowLevel.map;
 
-import com.csv.transform.models.data.CsvTable;
-import com.csv.transform.models.data.Row;
+import com.csv.transform.models.csv.CsvTable;
+import com.csv.transform.models.csv.Row;
 import com.csv.transform.transformationStrategies.lowLevel.TransformationStrategy;
 import org.springframework.stereotype.Component;
 

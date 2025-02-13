@@ -1,7 +1,7 @@
 package com.csv.transform.transformationStrategies.highLevel;
 
-import com.csv.transform.models.data.CsvTable;
-import com.csv.transform.models.data.ExcelIndexTable;
+import com.csv.transform.models.csv.CsvTable;
+import com.csv.transform.models.excel.ExcelIndexTable;
 import com.csv.transform.transformationStrategies.lowLevel.TransformationStrategy;
 import com.csv.transform.transformationStrategies.lowLevel.build.BuildExcelIndexTable;
 import com.csv.transform.transformationStrategies.lowLevel.combine.CombineCsvTables;

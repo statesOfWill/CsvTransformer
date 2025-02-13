@@ -1,4 +1,4 @@
-package com.csv.transform.models.data;
+package com.csv.transform.models.csv;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

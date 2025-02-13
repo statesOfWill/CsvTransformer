@@ -1,25 +1,24 @@
 package com.csv.transform.transformationStrategies.lowLevel.map;
 
 import com.csv.transform.mapperwrapper.ObjectMapperWrapper;
-import com.csv.transform.models.data.Cell;
-import com.csv.transform.models.data.ExcelIndexTable;
-import com.csv.transform.mysqlDataAccess.DbCell;
-import com.csv.transform.mysqlDataAccess.DbCellRepository;
+import com.csv.transform.models.csv.Cell;
+import com.csv.transform.models.csv.CsvTable;
+import com.csv.transform.models.excel.ExcelIndexTable;
+import com.csv.transform.models.database.DbCell;
+import com.csv.transform.models.database.DbCellRepository;
 import com.csv.transform.transformationStrategies.lowLevel.TransformationStrategy;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
 @Component
-public class SaveCellsAsDb implements TransformationStrategy<Pair<ArrayList<ArrayList<Cell<String>>>, ExcelIndexTable>, Boolean> {
+public class SaveCellsAsDb implements TransformationStrategy<Pair<CsvTable, ExcelIndexTable>, Boolean> {
     @Autowired
     private DbCellRepository cellRepository;
     @Autowired
     private ObjectMapperWrapper mapper;
     @Override
-    public Boolean transform(Pair<ArrayList<ArrayList<Cell<String>>>, ExcelIndexTable> input) {
+    public Boolean transform(Pair<CsvTable, ExcelIndexTable> input) {
         var cellList = input.getLeft();
         var indexTable = input.getRight();
         for(int i = 0; i < cellList.size();i++){
@@ -33,7 +32,7 @@ public class SaveCellsAsDb implements TransformationStrategy<Pair<ArrayList<Arra
                     System.out.println(data);
                     System.out.print("with excel index: ");
                     System.out.println(excelIndex);
-                    DbCell dbCell = new DbCell(data, excelIndex);
+                    DbCell dbCell = new DbCell(data);
                     cellRepository.save(dbCell);
                 }catch(Exception e){
                     return false;

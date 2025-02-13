@@ -1,8 +1,8 @@
 package com.csv.transform.transformationStrategies.lowLevel.build;
 
-import com.csv.transform.models.data.CsvTables;
-import com.csv.transform.models.data.CsvTable;
-import com.csv.transform.models.data.ExcelIndexTable;
+import com.csv.transform.models.csv.CsvTables;
+import com.csv.transform.models.csv.CsvTable;
+import com.csv.transform.models.excel.ExcelIndexTable;
 import com.csv.transform.transformationStrategies.lowLevel.TransformationStrategy;
 import org.springframework.stereotype.Component;
 

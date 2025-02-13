@@ -1,7 +1,7 @@
-package com.csv.transform.models.data;
+package com.csv.transform.models.csv;
 
 
-import com.csv.transform.models.data.iterators.CsvCellIterator;
+import com.csv.transform.iterators.CsvCellIterator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

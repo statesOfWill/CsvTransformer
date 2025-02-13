@@ -1,15 +1,14 @@
 package com.csv.transform;
 
-import com.csv.transform.models.data.ExcelIndexTable;
-import com.csv.transform.models.data.Request;
-import com.csv.transform.models.data.Response;
+import com.csv.transform.models.excel.ExcelIndexTable;
+import com.csv.transform.models.api.Request;
+import com.csv.transform.models.api.Response;
+import com.csv.transform.models.database.DbCell;
 import com.csv.transform.transformationStrategies.highLevel.*;
 import com.csv.transform.transformationStrategies.lowLevel.map.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,15 +34,21 @@ public class CsvTransformationController {
     PurchaseKeywordTransformation purchaseKeywordTransformation;
     @Autowired
     PaymentKeywordTransformation paymentKeywordTransformation;
+    @Autowired
+    GetAllDbCellsAsListTransformation getAllDbCellsTransformation;
 
     @PostMapping("/init")
     Response initializeCsv(@RequestBody Request<String> request) {
-        var source  = stringRequestToCsvTable.transform( request );
+        var source  = stringRequestToCsvTable.transform( request.getBody() );
         var excelIndexTable = new ExcelIndexTable(source.getNumRows(), source.getNumColumns());
-        var toListOfCells = csvTableToListOfCells.transform(source);
-        var savedToDb = saveCellsAsDb.transform(Pair.of(toListOfCells, excelIndexTable));
+        var savedToDb = saveCellsAsDb.transform(Pair.of(source, excelIndexTable));
         source.setTransformationSuccessful(savedToDb);
         return csvTableToResponse.transform( source );
+    }
+
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<DbCell> getAllCells() {
+        return getAllDbCellsTransformation.transform("input");
     }
 
     @PostMapping("/map")

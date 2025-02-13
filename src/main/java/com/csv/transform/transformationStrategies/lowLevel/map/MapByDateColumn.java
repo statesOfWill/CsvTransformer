@@ -1,9 +1,9 @@
 package com.csv.transform.transformationStrategies.lowLevel.map;
 
-import com.csv.transform.models.data.CsvTables;
-import com.csv.transform.models.data.CsvTable;
+import com.csv.transform.models.csv.CsvTables;
+import com.csv.transform.models.csv.CsvTable;
 import com.csv.transform.mapperwrapper.ObjectMapperWrapper;
-import com.csv.transform.models.data.Range;
+import com.csv.transform.models.csv.Range;
 import com.csv.transform.transformationStrategies.lowLevel.TransformationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
